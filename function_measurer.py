@@ -37,7 +37,7 @@ class function:
         for i in range(len(self.x)+1):
 
             n=0
-            irreal = False
+            imaginary = False
             if len(roots) >= len(self.x)-2:
                 term = 1
                 for i in roots:
