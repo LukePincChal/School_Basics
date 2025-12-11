@@ -42,24 +42,24 @@ class function:
                 term = 1
                 for i in roots:
                     term*=i
-                valor = (((self.x[-1])**2)**0.5)/(term+0.001)
-                if (i%2)!=0: valor*=-1
-            else: valor = (-1)**i*i**(8/10)
+                value = (((self.x[-1])**2)**0.5)/(term+0.001)
+                if (i%2)!=0: value*=-1
+            else: value = (-1)**i*i**(8/10)
 
-            while round(self.plot(valor), 6)!=0:
-                valor -= self.plot(valor)/self.derivative(valor)
+            while round(self.plot(value), 6)!=0:
+                value -= self.plot(value)/self.derivative(value)
                 if n>100:
                     imaginary = True
                     break
                 n+=1
             if imaginary is True:
-                valor*= 1j
+                value*= 1j
                 for i in range(30):
-                    valor -= self.plot(valor)/self.derivative(valor)
+                    valor -= self.plot(value)/self.derivative(value)
             try:
-                roots.append(round(valor, 5))
+                roots.append(round(value, 5))
             except:
-                roots.append(valor)
+                roots.append(value)
         return f"The root(s) is(are):{set(roots)}"
     
     def integral(self, up=None, down=0):
