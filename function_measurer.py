@@ -75,14 +75,14 @@ class function:
     
     def mean_value(self, x0=0, x1=1):
         return (self.derivative(x0)-self.derivative(x1))/(x0-x1)
-typo = int(input("What do you want to do? \n1. - Plot the function's value \n2. - Get the function's derivative \n3. - Get function's area(Integral)\n4. - Get function's roots\n>>: "))
-if typo==1:
+Inputtype = int(input("What do you want to do? \n1. - Plot the function's value \n2. - Get the function's derivative \n3. - Get function's area(Integral)\n4. - Get function's roots\n>>: "))
+if Inputtype==1:
   number = float(input("What is your selected value?"))
   print(function().plot(value=number))
-elif typo == 4:
+elif Inputtype == 4:
   print(function().roots())
-elif typo == 2:
-    number = input("If you want to select a value, digit it, if no, press Enter: ")
+elif Inputtype == 2:
+    number = input("If you want to select a value, digit it, if not, press Enter: ")
     try:
         number = float(number)
         print(function().derivative(value=number))
