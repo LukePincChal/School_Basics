@@ -42,24 +42,24 @@ class function:
                 term = 1
                 for i in roots:
                     term*=i
-                value = (((self.x[-1])**2)**0.5)/(term+0.001)
-                if (i%2)!=0: value*=-1
-            else: value = (-1)**i*i**(8/10)
+                valor = (((self.x[-1])**2)**0.5)/(term+0.001)
+                if (i%2)!=0: valor*=-1
+            else: valor = (-1)**i*i**(8/10)
 
-            while round(self.plot(value), 6)!=0:
-                value -= self.plot(value)/self.derivative(value)
+            while round(self.plot(valor), 6)!=0:
+                valor -= self.plot(valor)/self.derivative(valor)
                 if n>100:
                     imaginary = True
                     break
                 n+=1
             if imaginary is True:
-                value*= 1j
+                valor*= 1j
                 for i in range(30):
-                    valor -= self.plot(value)/self.derivative(value)
+                    valor -= self.plot(valor)/self.derivative(valor)
             try:
-                roots.append(round(value, 5))
+                roots.append(round(valor, 5))
             except:
-                roots.append(value)
+                roots.append(valor)
         return f"The root(s) is(are):{set(roots)}"
     
     def integral(self, up=None, down=0):
@@ -73,16 +73,37 @@ class function:
                 x[power] = (item/(power+1))*up**(power+1) - (item/(power+1))*down**(power+1)
             return sum(x)
     
-    def mean_value(self, x0=0, x1=1):
-        return (self.derivative(x0)-self.derivative(x1))/(x0-x1)
-Inputtype = int(input("What do you want to do? \n1. - Plot the function's value \n2. - Get the function's derivative \n3. - Get function's area(Integral)\n4. - Get function's roots\n>>: "))
-if Inputtype==1:
+
+    def tangent(self, x0=0):
+        fx = self.derivative()
+        fa = []
+
+        for i in fx:
+            fa.append(-x0*i)
+
+        fx.append(self.plot(x0))
+        
+        for pos, i in enumerate(fa):
+            fx[pos+1] += i
+        return fx
+        
+
+    def line(self, x0=0):
+        line = []
+        f = self.derivative(x0)
+        line.append(f)
+        line.append(-f*x0+self.plot(x0))
+        return line
+
+
+typo = int(input("What do you want to do? \n1. - Plot the function's value \n2. - Get the function's derivative \n3. - Get function's area(Integral)\n4. - Get function's roots\n>>: "))
+if typo==1:
   number = float(input("What is your selected value?"))
   print(function().plot(value=number))
-elif Inputtype == 4:
+elif typo == 4:
   print(function().roots())
-elif Inputtype == 2:
-    number = input("If you want to select a value, digit it, if not, press Enter: ")
+elif typo == 2:
+    number = input("If you want to select a value, digit it, if no, press Enter: ")
     try:
         number = float(number)
         print(function().derivative(value=number))
