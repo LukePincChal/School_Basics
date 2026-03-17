@@ -34,17 +34,17 @@ class function:
 
     def roots(self):
         roots = []
-        for i in range(len(self.x)+1):
+        for i in range(len(self.x)+2):
 
             n=0
             imaginary = False
-            if len(roots) >= len(self.x)-2:
+            if i+1 >= len(self.x):
                 term = 1
-                for i in roots:
-                    term*=i
+                for z in roots:
+                    term*=z
                 valor = (((self.x[-1])**2)**0.5)/(term+0.001)
                 if (i%2)!=0: valor*=-1
-            else: valor = (-1)**i*i**(8/10)
+            else: valor = (-1)**i * i**(18/10)
 
             while round(self.plot(valor), 6)!=0:
                 valor -= self.plot(valor)/self.derivative(valor)
