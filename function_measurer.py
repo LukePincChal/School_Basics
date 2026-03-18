@@ -44,7 +44,7 @@ class function:
                     term*=z
                 valor = (((self.x[-1])**2)**0.5)/(term+0.001)
                 if (i%2)!=0: valor*=-1
-            else: valor = (-1)**i * i**(18/10)
+            else: valor = (-1)**i * i
 
             while round(self.plot(valor), 6)!=0:
                 valor -= self.plot(valor)/self.derivative(valor)
@@ -54,7 +54,7 @@ class function:
                 n+=1
             if imaginary is True:
                 valor*= 1j
-                for i in range(30):
+                for i in range(100):
                     valor -= self.plot(valor)/self.derivative(valor)
             try:
                 roots.append(round(valor, 5))
