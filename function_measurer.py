@@ -163,11 +163,23 @@ class function:
         return line
 
 
+    def _polynomise(self, arr):
+        pol_string = ""
+
+        for i in range(len(arr)):
+
+            if arr[i] == 0: continue
+            elif i==0: pol_string += str(arr[i])
+            else: pol_string = str(arr[i])+f"x^{i} + "+pol_string
+
+        return pol_string
+
 
 
 if __name__ == "__main__":
     whised_input = True
     polynomial = function()
+    print(f"The function will be: {polynomial._polynomise(polynomial.x)}")
 
     while whised_input != 0:
 
@@ -188,18 +200,19 @@ if __name__ == "__main__":
                 number = float(number)
                 print(polynomial.derivative(value=number))
             except:
+
                 result = polynomial.derivative()[::-1]
-                result2 = ""
-                for i in range(len(result)):
-                    if i==0: result2 += str(result[i])
-                    else: result2 = str(result[i])+f"x^{i} + "+result2
-                print(result2)
+                prepared_result = polynomial._polynomise(result)
+                print(prepared_result)
 
 
 
         elif whised_input == 3:
+
           up = input("If you want to select the up part of the integral, digit, if no, Enter >>:")
-          if up is None or up == "": print(polynomial.integral())
+          if up is None or up == "": 
+            result = polynomial.integral()[::-1]
+            print(polynomial._polynomise(result))
 
           else:
             down = input("Digit the down part of the integral:")
@@ -215,4 +228,5 @@ if __name__ == "__main__":
 
         elif whised_input == 5:
             number = int(input("What is the wished x-value to be tangent point between the line and the function?>>"))
-            print(polynomial.line(number))
+            result = polynomial.line(number)
+            print(polynomial._polynomise(result))
