@@ -179,7 +179,7 @@ class function:
 if __name__ == "__main__":
     whised_input = True
     polynomial = function()
-    print(f"The function will be: {polynomial._polynomise(polynomial.x)}")
+    print(f"The function will be: {polynomial._polynomise(polynomial.x[::-1])}")
 
     while whised_input != 0:
 
